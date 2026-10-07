@@ -45,7 +45,7 @@ function showMessage(t){let m=document.getElementById("message");m.textContent=t
 document.getElementById("cartBtn").onclick=()=>cartEl.classList.add("open");
 document.getElementById("closeCart").onclick=()=>cartEl.classList.remove("open");
 document.getElementById("search").oninput=e=>renderProducts(products.filter(p=>p.name.includes(e.target.value.trim())));
-document.getElementById("checkout").onclick=()=>{let a=document.getElementById("address").value.trim();if(!cart.length)return showMessage("أضف وجبة إلى السلة أولاً");if(!a)return showMessage("اكتب عنوان التوصيل أولاً");showMessage("تم إرسال طلبك بنجاح 🎉");cart=[];document.getElementById("address").value="";renderCart()};
+document.getElementById("checkout").onclick=()=>{let a=document.getElementById("address").value.trim();if(!cart.length)return showMessage("🛒 السلة فارغة");if(!a)return showMessage("📍 اكتب عنوان التوصيل أولاً");let total=cart.reduce((s,i)=>s+i.price*i.qty,0),items=cart.map(i=>`${i.emoji} ${i.name} × ${i.qty} = ${i.price*i.qty} درهم`).join("\n");let msg=`🛍️ طلب جديد - Blink Delivery\n\n${items}\n\n💰 المجموع: ${total} درهم\n📍 العنوان: ${a}`;window.location.href="https://wa.me/212688741156?text="+encodeURIComponent(msg);cart=[];renderCart();};  
 renderProducts();renderCart();
 </script>
 </body>
