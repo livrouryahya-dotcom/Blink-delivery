@@ -32,9 +32,102 @@ main{max-width:1100px;margin:auto}section:not(.hero){padding:20px 5%}
 <div id="message" class="message"></div>
 <script>
 const products=[
-{id:1,name:"برغر لحم",price:35,emoji:"🍔"},{id:2,name:"بيتزا",price:45,emoji:"🍕"},
-{id:3,name:"دجاج مقرمش",price:38,emoji:"🍗"},{id:4,name:"تاكو",price:30,emoji:"🌮"},
-{id:5,name:"بطاطس",price:15,emoji:"🍟"},{id:6,name:"عصير طبيعي",price:18,emoji:"🥤"}];
+{id:1,name:"Bateau 1 - 60 pcs",price:460,emoji:"🍣"},
+{id:2,name:"Bateau 2 - 80 pcs",price:660,emoji:"🍣"},
+{id:3,name:"Bateau 3 - 100 pcs",price:860,emoji:"🍣"},
+
+{id:4,name:"Mix Yami - 18 pcs",price:120,emoji:"🍱"},
+{id:5,name:"Mix Sushi - 22 pcs",price:135,emoji:"🍱"},
+{id:6,name:"Mix Medium - 24 pcs",price:145,emoji:"🍱"},
+{id:7,name:"Mix Box - 33 pcs",price:260,emoji:"🍱"},
+{id:8,name:"Mix Lovers - 18 pcs",price:100,emoji:"🍱"},
+{id:9,name:"Fry Lovers - 28 pcs",price:165,emoji:"🍱"},
+{id:10,name:"Mix Party - 48 pcs",price:355,emoji:"🍱"},
+
+{id:11,name:"Maki Box - 24 pcs",price:110,emoji:"🥢"},
+{id:12,name:"Aromaki Box - 24 pcs",price:160,emoji:"🥢"},
+{id:13,name:"Crispy Box - 12 pcs",price:90,emoji:"🥢"},
+{id:14,name:"California Box - 16 pcs",price:110,emoji:"🥢"},
+
+{id:15,name:"Sashimi Saumon - 4 pcs",price:55,emoji:"🍣"},
+{id:16,name:"Tataki Saumon - 4 pcs",price:55,emoji:"🍣"},
+{id:17,name:"Tartare Saumon",price:60,emoji:"🥗"},
+{id:18,name:"Tartare Crevettes",price:55,emoji:"🥗"},
+{id:19,name:"Tartare Tropical",price:55,emoji:"🥗"},
+
+{id:20,name:"Temaki Saumon Avocat",price:50,emoji:"🍙"},
+{id:21,name:"Temaki Crevette Avocat",price:40,emoji:"🍙"},
+{id:22,name:"Nigiri Saumon - 2 pcs",price:30,emoji:"🍣"},
+{id:23,name:"Nigiri Saumon Brisé - 2 pcs",price:30,emoji:"🍣"},
+{id:24,name:"Nigiri Crevette - 2 pcs",price:25,emoji:"🍣"},
+
+{id:25,name:"Aromaki Saumon - 6 pcs",price:55,emoji:"🍣"},
+{id:26,name:"Aromaki Crevettes - 6 pcs",price:55,emoji:"🍣"},
+{id:27,name:"Aromaki Poulet - 6 pcs",price:50,emoji:"🍣"},
+{id:28,name:"Aromaki Yami Yami - 6 pcs",price:65,emoji:"🍣"},
+{id:29,name:"Aromaki Chef - 6 pcs",price:70,emoji:"🍣"},
+{id:30,name:"Aromaki Nouri - 6 pcs",price:50,emoji:"🍣"},
+
+{id:31,name:"Slim Roll Saumon - 6 pcs",price:55,emoji:"🍣"},
+{id:32,name:"Slim Roll Crevette - 6 pcs",price:55,emoji:"🍣"},
+{id:33,name:"Slim Roll Poulet - 6 pcs",price:50,emoji:"🍣"},
+
+{id:34,name:"Maki Crispy Crevette - 6 pcs",price:35,emoji:"🍤"},
+{id:35,name:"Maki Crispy Saumon - 6 pcs",price:35,emoji:"🍣"},
+{id:36,name:"Maki Crispy Surimi - 6 pcs",price:25,emoji:"🍣"},
+{id:37,name:"Maki Crispy Poulet - 6 pcs",price:30,emoji:"🍗"},
+
+{id:38,name:"Aromaki Bowl Saumon",price:55,emoji:"🍚"},
+{id:39,name:"Aromaki Bowl Poulet",price:50,emoji:"🍚"},
+
+{id:40,name:"Fry Ebi Fry - 6 pcs",price:40,emoji:"🍤"},
+{id:41,name:"Dragon Eye - 6 pcs",price:55,emoji:"🍣"},
+{id:42,name:"Casablanca - 6 pcs",price:40,emoji:"🍣"},
+{id:43,name:"Fry Saumon Fry - 6 pcs",price:45,emoji:"🍣"},
+{id:44,name:"Aromaki Boule - 6 pcs",price:50,emoji:"🍣"},
+{id:45,name:"Crunchy - 6 pcs",price:45,emoji:"🍣"},
+
+{id:46,name:"Pizza Lux - 8 pcs",price:55,emoji:"🍕"},
+{id:47,name:"Pizza Royale - 8 pcs",price:55,emoji:"🍕"},
+{id:48,name:"Pizza Mozzarella - 8 pcs",price:55,emoji:"🍕"},
+
+{id:49,name:"California Cream Cheese - 4 pcs",price:40,emoji:"🍣"},
+{id:50,name:"California Avocado Roll - 4 pcs",price:45,emoji:"🍣"},
+{id:51,name:"California Classique Roll - 4 pcs",price:30,emoji:"🍣"},
+{id:52,name:"California Ebi Fry - 4 pcs",price:40,emoji:"🍣"},
+{id:53,name:"California Chaki Yaki - 4 pcs",price:45,emoji:"🍣"},
+{id:54,name:"California Yami Crispy - 4 pcs",price:45,emoji:"🍣"},
+{id:55,name:"California Crunchy Crevettes - 4 pcs",price:40,emoji:"🍣"},
+
+{id:56,name:"Fresh Saumon",price:55,emoji:"🍣"},
+{id:57,name:"Fresh Crevettes",price:50,emoji:"🍤"},
+
+{id:58,name:"Hiroshima - 4 pcs",price:55,emoji:"⭐"},
+{id:59,name:"Osaka - 4 pcs",price:55,emoji:"⭐"},
+{id:60,name:"Kyo - 4 pcs",price:55,emoji:"⭐"},
+{id:61,name:"Mong Roll - 4 pcs",price:50,emoji:"⭐"},
+{id:62,name:"Spécial Yami - 4 pcs",price:65,emoji:"⭐"},
+{id:63,name:"Yami Yami - 4 pcs",price:60,emoji:"⭐"},
+
+{id:64,name:"Burrito Poulet",price:40,emoji:"🌯"},
+{id:65,name:"Burrito Crevette",price:55,emoji:"🌯"},
+{id:66,name:"Burrito Saumon",price:55,emoji:"🌯"},
+
+{id:67,name:"Maki Concombre",price:15,emoji:"🍙"},
+{id:68,name:"Maki Surimi",price:25,emoji:"🍙"},
+{id:69,name:"Maki Avocat",price:25,emoji:"🍙"},
+{id:70,name:"Maki Crevette",price:30,emoji:"🍙"},
+{id:71,name:"Maki Saumon",price:35,emoji:"🍙"},
+{id:72,name:"Maki Mangue",price:25,emoji:"🍙"},
+{id:73,name:"Maki Cheese",price:25,emoji:"🍙"},
+{id:74,name:"Maki Poulet",price:20,emoji:"🍙"},
+
+{id:75,name:"Fotomaki Saumon",price:45,emoji:"🍣"},
+{id:76,name:"Fotomaki Crevette",price:45,emoji:"🍣"},
+{id:77,name:"Fotomaki Végétarien",price:35,emoji:"🥑"},
+{id:78,name:"Fotomaki Poulet",price:35,emoji:"🍗"}
+];
+  
 let cart=[];
 const productsEl=document.getElementById("products"),cartEl=document.getElementById("cart"),cartItems=document.getElementById("cartItems"),totalEl=document.getElementById("total"),countEl=document.getElementById("cartCount");
 function renderProducts(list=products){productsEl.innerHTML=list.map(p=>`<article class="card"><div class="food">${p.emoji}</div><h3>${p.name}</h3><div class="price">${p.price} درهم</div><button class="primary" onclick="addToCart(${p.id})">أضف إلى السلة</button></article>`).join("")}
