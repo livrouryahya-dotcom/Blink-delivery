@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BlinK Delivery</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Tahoma,sans-serif;background:#f7f7f7;color:#222}
+header{position:sticky;top:0;z-index:5;background:#fff;padding:16px 5%;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001}
+.brand{font-size:25px;font-weight:800;color:#6d35d8}button{border:0;border-radius:12px;padding:11px 16px;cursor:pointer;font-size:15px}
+.hero{padding:40px 5%;background:linear-gradient(135deg,#eee5ff,#fff)}.hero h1{margin-top:0;font-size:30px}
+.hero p{color:#666}.hero input{width:100%;max-width:650px;padding:15px;border:1px solid #ddd;border-radius:14px;font-size:16px}
+main{max-width:1100px;margin:auto}section:not(.hero){padding:20px 5%}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.card{background:#fff;border-radius:18px;padding:15px;box-shadow:0 3px 15px #0000000d}
+.food{font-size:55px;text-align:center;background:#f1ebff;border-radius:14px;padding:15px}.card h3{margin-bottom:5px}
+.price{font-weight:bold;color:#6d35d8}.primary{background:#6d35d8;color:#fff;width:100%}
+.cart{position:fixed;top:0;right:-420px;width:min(400px,92%);height:100%;background:#fff;z-index:10;padding:25px;box-shadow:-5px 0 20px #0002;transition:.25s;overflow:auto}
+.cart.open{right:0}.close{float:left;background:#eee}.cart-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee}
+.cart input{width:100%;padding:13px;margin:15px 0;border:1px solid #ddd;border-radius:10px}.total{font-size:18px;margin:20px 0}
+.message{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:12px 20px;border-radius:12px;display:none}.message.show{display:block}
+#cartCount{background:#6d35d8;color:#fff;border-radius:50%;padding:3px 7px}
+</style>
+</head>
+<body>
+<header><div class="brand">⚡ BlinK</div><button id="cartBtn">🛒 السلة <span id="cartCount">0</span></button></header>
+<main>
+<section class="hero"><h1>أهلاً بك في BlinK Delivery 🍔</h1><p>اطلب طعامك المفضل وسنوصله إليك بسرعة.</p><input id="search" type="search" placeholder="ابحث عن وجبة أو مطعم..."></section>
+<section><h2>الوجبات</h2><div id="products" class="grid"></div></section>
+</main>
+<aside id="cart" class="cart"><button id="closeCart" class="close">✕</button><h2>سلة الطلب</h2><div id="cartItems"></div><div class="total">المجموع: <strong id="total">0</strong> درهم</div><input id="address" placeholder="اكتب عنوان التوصيل"><button id="checkout" class="primary">تأكيد الطلب</button></aside>
+<div id="message" class="message"></div>
+<script>
+const products=[
+{id:1,name:"برغر لحم",price:35,emoji:"🍔"},{id:2,name:"بيتزا",price:45,emoji:"🍕"},
+{id:3,name:"دجاج مقرمش",price:38,emoji:"🍗"},{id:4,name:"تاكو",price:30,emoji:"🌮"},
+{id:5,name:"بطاطس",price:15,emoji:"🍟"},{id:6,name:"عصير طبيعي",price:18,emoji:"🥤"}];
+let cart=[];
+const productsEl=document.getElementById("products"),cartEl=document.getElementById("cart"),cartItems=document.getElementById("cartItems"),totalEl=document.getElementById("total"),countEl=document.getElementById("cartCount");
+function renderProducts(list=products){productsEl.innerHTML=list.map(p=>`<article class="card"><div class="food">${p.emoji}</div><h3>${p.name}</h3><div class="price">${p.price} درهم</div><button class="primary" onclick="addToCart(${p.id})">أضف إلى السلة</button></article>`).join("")}
+function addToCart(id){let x=cart.find(i=>i.id===id);if(x)x.qty++;else cart.push({...products.find(p=>p.id===id),qty:1});renderCart();showMessage("تمت إضافة الوجبة إلى السلة")}
+function renderCart(){cartItems.innerHTML=cart.length?cart.map(i=>`<div class="cart-row"><span>${i.emoji} ${i.name} × ${i.qty}</span><b>${i.price*i.qty} د</b><button onclick="removeItem(${i.id})">حذف</button></div>`).join(""):"<p>السلة فارغة.</p>";totalEl.textContent=cart.reduce((s,i)=>s+i.price*i.qty,0);countEl.textContent=cart.reduce((s,i)=>s+i.qty,0)}
+function removeItem(id){cart=cart.filter(i=>i.id!==id);renderCart()}
+function showMessage(t){let m=document.getElementById("message");m.textContent=t;m.classList.add("show");setTimeout(()=>m.classList.remove("show"),1800)}
+document.getElementById("cartBtn").onclick=()=>cartEl.classList.add("open");
+document.getElementById("closeCart").onclick=()=>cartEl.classList.remove("open");
+document.getElementById("search").oninput=e=>renderProducts(products.filter(p=>p.name.includes(e.target.value.trim())));
+document.getElementById("checkout").onclick=()=>{let a=document.getElementById("address").value.trim();if(!cart.length)return showMessage("أضف وجبة إلى السلة أولاً");if(!a)return showMessage("اكتب عنوان التوصيل أولاً");showMessage("تم إرسال طلبك بنجاح 🎉");cart=[];document.getElementById("address").value="";renderCart()};
+renderProducts();renderCart();
+</script>
+</body>
+</html>
